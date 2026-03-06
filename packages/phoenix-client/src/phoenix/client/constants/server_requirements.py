@@ -42,3 +42,10 @@ GET_SPANS_TRACE_IDS = ParameterRequirement(
     route="GET /v1/projects/{id}/spans",
     min_server_version=Version(13, 9, 0),
 )
+
+DATASET_UPLOAD_EXAMPLE_IDS = ParameterRequirement(
+    parameter_name="example_ids",
+    parameter_location="body",
+    route="POST /v1/datasets/upload",
+    min_server_version=Version(15, 0, 0),
+)
