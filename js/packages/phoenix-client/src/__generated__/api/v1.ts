@@ -1265,6 +1265,8 @@ export interface components {
         DatasetExample: {
             /** Id */
             id: string;
+            /** Node Id */
+            node_id: string;
             /** Input */
             input: {
                 [key: string]: unknown;

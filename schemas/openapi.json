@@ -6126,6 +6126,10 @@
             "type": "string",
             "title": "Id"
           },
+          "node_id": {
+            "type": "string",
+            "title": "Node Id"
+          },
           "input": {
             "additionalProperties": true,
             "type": "object",
@@ -6150,6 +6154,7 @@
         "type": "object",
         "required": [
           "id",
+          "node_id",
           "input",
           "output",
           "metadata",
