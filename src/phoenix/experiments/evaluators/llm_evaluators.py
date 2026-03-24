@@ -3,7 +3,6 @@ from collections.abc import Callable
 from types import MappingProxyType
 from typing import Any, Optional
 
-from phoenix.evals.models.base import BaseModel as LLMBaseModel
 from phoenix.evals.utils import snap_to_rail
 from phoenix.experiments.evaluators.base import (
     ExperimentEvaluator,
@@ -63,7 +62,7 @@ class LLMCriteriaEvaluator(LLMEvaluator):
 
     def __init__(
         self,
-        model: LLMBaseModel,
+        model: Any,
         criteria: str,
         description: str,
         name: str,
@@ -76,14 +75,14 @@ class LLMCriteriaEvaluator(LLMEvaluator):
 
     def evaluate(self, *, output: Optional[TaskOutput] = None, **_: Any) -> EvaluationResult:
         formatted_template = self._format_eval_template(output)
-        unparsed_response = self.model._generate(formatted_template)
+        unparsed_response = self.model.generate_text(formatted_template)
         return self._parse_eval_output(unparsed_response)
 
     async def async_evaluate(
         self, *, output: Optional[TaskOutput] = None, **_: Any
     ) -> EvaluationResult:
         formatted_template = self._format_eval_template(output)
-        unparsed_response = await self.model._async_generate(formatted_template)
+        unparsed_response = await self.model.async_generate_text(formatted_template)
         return self._parse_eval_output(unparsed_response)
 
     def _format_eval_template(self, output: TaskOutput) -> str:
@@ -123,7 +122,7 @@ class LLMCriteriaEvaluator(LLMEvaluator):
 def criteria_evaluator_factory(
     class_name: str, criteria: str, description: str, default_name: str
 ) -> type[ExperimentEvaluator]:
-    def _init(self, model: LLMBaseModel, name: str = default_name) -> None:  # type: ignore
+    def _init(self, model: Any, name: str = default_name) -> None:  # type: ignore
         LLMCriteriaEvaluator.__init__(self, model, criteria, description, name=name)
 
     return type(
@@ -248,7 +247,7 @@ class RelevanceEvaluator(LLMEvaluator):
 
     def __init__(
         self,
-        model: LLMBaseModel,
+        model: Any,
         get_query: Optional[Callable[[ExampleInput, ExampleMetadata], str]] = None,
         get_response: Optional[Callable[[Optional[TaskOutput], ExampleMetadata], str]] = None,
         name: str = "Relevance",
@@ -305,7 +304,7 @@ class RelevanceEvaluator(LLMEvaluator):
         **_: Any,
     ) -> EvaluationResult:
         formatted_template = self._format_eval_template(output, input, metadata)
-        unparsed_response = self.model._generate(formatted_template)
+        unparsed_response = self.model.generate_text(formatted_template)
         return self._parse_eval_output(unparsed_response)
 
     async def async_evaluate(
@@ -317,7 +316,7 @@ class RelevanceEvaluator(LLMEvaluator):
         **_: Any,
     ) -> EvaluationResult:
         formatted_template = self._format_eval_template(output, input, metadata)
-        unparsed_response = await self.model._async_generate(formatted_template)
+        unparsed_response = await self.model.async_generate_text(formatted_template)
         return self._parse_eval_output(unparsed_response)
 
 
@@ -384,7 +383,7 @@ class LLMRelationalEvaluator(LLMEvaluator):
 
     def __init__(
         self,
-        model: LLMBaseModel,
+        model: Any,
         relation: str,
         description: str,
         name: str,
@@ -457,7 +456,7 @@ class LLMRelationalEvaluator(LLMEvaluator):
         **_: Any,
     ) -> EvaluationResult:
         formatted_template = self._format_eval_template(output, input, metadata)
-        unparsed_response = self.model._generate(formatted_template)
+        unparsed_response = self.model.generate_text(formatted_template)
         return self._parse_eval_output(unparsed_response)
 
     async def async_evaluate(
@@ -469,5 +468,5 @@ class LLMRelationalEvaluator(LLMEvaluator):
         **_: Any,
     ) -> EvaluationResult:
         formatted_template = self._format_eval_template(output, input, metadata)
-        unparsed_response = await self.model._async_generate(formatted_template)
+        unparsed_response = await self.model.async_generate_text(formatted_template)
         return self._parse_eval_output(unparsed_response)
