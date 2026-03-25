@@ -13,7 +13,6 @@ on:
         type: choice
         options:
           - arize-phoenix-client
-          - arize-phoenix-evals
           - arize-phoenix-otel
       version:
         description: 'Version to update to (e.g., 1.23.0)'
