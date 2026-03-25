@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.19.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v13.18.2...arize-phoenix-v13.19.0) (2026-03-25)
+
+
+### Features
+
+* add PromptInput compound component for AI interactions ([#12353](https://github.com/Arize-ai/phoenix/issues/12353)) ([729a56f](https://github.com/Arize-ai/phoenix/commit/729a56fc832ffc6b7ee3a011f9f5a2bbd32e6aee))
+* **app:** update project creation flow with color picker and description ([#12328](https://github.com/Arize-ai/phoenix/issues/12328)) ([ccfdcf2](https://github.com/Arize-ai/phoenix/commit/ccfdcf21afd31dbf553752e1c1bb62a76c20dffa))
+
 ## [13.18.2](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v13.18.1...arize-phoenix-v13.18.2) (2026-03-24)
 
 
