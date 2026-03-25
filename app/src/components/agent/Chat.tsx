@@ -30,6 +30,7 @@ const chatCSS = css`
     flex: 1;
     min-height: 0;
     overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
   }
 
   .chat__messages {
@@ -38,8 +39,7 @@ const chatCSS = css`
     display: flex;
     flex-direction: column;
     gap: var(--global-dimension-size-100);
-    padding: var(--global-dimension-size-200);
-    padding-bottom: var(--global-dimension-size-200);
+    padding: var(--global-dimension-size-200) var(--global-dimension-size-150);
     font-size: var(--global-font-size-s);
     line-height: var(--global-line-height-s);
   }
